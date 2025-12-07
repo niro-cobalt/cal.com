@@ -1,11 +1,11 @@
-import type { FC, ReactNode } from "react";
+import type { ReactNode } from "react";
 
 type StepHeaderProps = {
   children?: ReactNode;
   title: string;
   subtitle: string;
 };
-export const StepHeader: FC<StepHeaderProps> = ({ children, title, subtitle }) => {
+export const StepHeader = ({ children, title, subtitle }: StepHeaderProps) => {
   return (
     <div>
       <header>
