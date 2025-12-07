@@ -1,4 +1,4 @@
-import type { NextApiRequest } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 import { symmetricEncrypt } from "@calcom/lib/crypto";
 
@@ -10,7 +10,7 @@ import {
 } from "../../constants";
 import { generateGoogleCalendarAccessToken, generateZoomAccessToken } from "../../lib/integrations";
 
-export default async function handler(req: NextApiRequest, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const isInvalid = req.query["invalid"] === "1";
   const userId = parseInt(req.query["userId"] as string);
   const appSlug = req.query["appSlug"];
