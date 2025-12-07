@@ -2,7 +2,7 @@
 
 import classNames from "classnames";
 import { signOut } from "next-auth/react";
-import { Children, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import { useLocale } from "@calcom/lib/hooks/useLocale";
 import { Button } from "@calcom/ui/components/button";
@@ -23,7 +23,8 @@ export const OnboardingLayout = ({ userEmail, currentStep, totalSteps, children 
   };
 
   // Extract children as array
-  const childrenArray = Children.toArray(children);
+  // Note: React 19 deprecated Children utilities in favor of direct array manipulation
+  const childrenArray = Array.isArray(children) ? children : [children];
   const column1 = childrenArray[0];
   const column2 = childrenArray[1];
 
