@@ -70,4 +70,5 @@ if (
   }
 }
 
+// React 19 compatibility: render() now returns a Promise and cleanup is handled differently
 render(<App slug={slug} template={cli.flags.template || ""} command={command} />);
