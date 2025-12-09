@@ -9,9 +9,11 @@ import SettingsHeader from "@calcom/features/settings/appDir/SettingsHeader";
 
 const orgIdSchema = z.object({ id: z.coerce.number() });
 
-export const generateMetadata = async ({ params }: { params: Params }) => {
+// Next.js 16: params is now a Promise that needs to be awaited
+export const generateMetadata = async (props: { params: Promise<Params> }) => {
   const organizationRepository = getOrganizationRepository();
-  const input = orgIdSchema.safeParse(await params);
+  const params = await props.params;
+  const input = orgIdSchema.safeParse(params);
   if (!input.success) {
     return await _generateMetadata(
       (t) => t("editing_org"),
@@ -33,16 +35,18 @@ export const generateMetadata = async ({ params }: { params: Params }) => {
   );
 };
 
-const Page = async ({ params }: { params: Params }) => {
+// Next.js 16: params is now a Promise that needs to be awaited
+const Page = async (props: { params: Promise<Params> }) => {
   const organizationRepository = getOrganizationRepository();
-  const input = orgIdSchema.safeParse(await params);
+  const params = await props.params;
+  const input = orgIdSchema.safeParse(params);
 
   if (!input.success) throw new Error("Invalid access");
 
   const org = await organizationRepository.adminFindById({ id: input.data.id });
   const t = await getTranslate();
   return (
-    <SettingsHeader title={`${t("editing_org")}: ${org.name}`} description={t("admin_orgs_edit_description")}>
+    <SettingsHeader title={`${t("editing_org")}: ${org.name}`} description={t("admin_orgs_edit_description"}>
       <LicenseRequired>
         <OrgForm org={org} />
       </LicenseRequired>
