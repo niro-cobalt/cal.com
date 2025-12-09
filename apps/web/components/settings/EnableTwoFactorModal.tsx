@@ -44,7 +44,7 @@ const WithStep = ({
 }: {
   step: SetupStep;
   current: SetupStep;
-  children: JSX.Element;
+  children: React.ReactElement;
 }) => {
   return step === current ? children : null;
 };

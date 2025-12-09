@@ -67,22 +67,20 @@ export function AppSetDefaultLinkDialog({
             });
             setLocationType(undefined);
           }}>
-          <>
-            <TextField
-              type="text"
-              required
-              {...form.register("link")}
-              placeholder={locationType.organizerInputPlaceholder ?? ""}
-              label={locationType.label ?? ""}
-            />
+          <TextField
+            type="text"
+            required
+            {...form.register("link")}
+            placeholder={locationType.organizerInputPlaceholder ?? ""}
+            label={locationType.label ?? ""}
+          />
 
-            <DialogFooter showDivider className="mt-8">
-              <DialogClose />
-              <Button color="primary" type="submit">
-                {t("save")}
-              </Button>
-            </DialogFooter>
-          </>
+          <DialogFooter showDivider className="mt-8">
+            <DialogClose />
+            <Button color="primary" type="submit">
+              {t("save")}
+            </Button>
+          </DialogFooter>
         </Form>
       </DialogContent>
     </Dialog>

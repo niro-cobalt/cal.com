@@ -105,7 +105,8 @@ export const SearchDialog = (props: ISearchDialog) => {
     </div>
   );
 
-  const handleFormSubmit = async (event: React.SyntheticEvent) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    // React 19: Use React.FormEvent instead of React.SyntheticEvent for form submissions
     event.stopPropagation();
     event.preventDefault();
     if (selectedMode === MODE_SEARCH) {

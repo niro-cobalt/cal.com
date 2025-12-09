@@ -251,7 +251,7 @@ export const MultiplePrivateLinksController = ({
 
           return (
             <ul ref={animateRef}>
-              {sortedLinksWithIndex.map(({ val, originalIndex }, key) => {
+              {sortedLinksWithIndex.map(({ val, originalIndex }) => {
                 const singleUseURL = `${bookerUrl}/d/${val.link}/${formMethods.getValues("slug")}`;
 
                 const latestLinkData = linkDataMap.get(val.link);

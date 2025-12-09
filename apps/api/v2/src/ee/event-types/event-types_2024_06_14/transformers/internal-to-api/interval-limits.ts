@@ -11,8 +11,10 @@ export function transformIntervalLimitsInternalToApi(
     return undefined;
   }
   const res: { [K in BookingLimitsKeysInputType]?: number } = {};
+  // Changed from .map() to .forEach() since the return value was not being used
+  // This avoids unnecessary array creation and is compatible with React 19.2.1
   transformedBookingFields &&
-    Object.entries(transformedBookingFields).map(([key, value]) => {
+    Object.entries(transformedBookingFields).forEach(([key, value]) => {
       const outputKey: BookingLimitsKeysInputType | undefined = Object.keys(
         BookingLimitsEnum_2024_06_14
       ).find(

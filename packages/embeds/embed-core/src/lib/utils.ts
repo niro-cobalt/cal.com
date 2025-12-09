@@ -36,7 +36,8 @@ export function fromEntriesWithDuplicateKeys(entries: IterableIterator<[string, 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   for (const [key, value] of entries) {
-    if (result.hasOwnProperty(key)) {
+    // React 19.2.1 compatibility: Use Object.prototype.hasOwnProperty.call instead of direct hasOwnProperty
+    if (Object.prototype.hasOwnProperty.call(result, key)) {
       let currentValue = result[key];
       if (!Array.isArray(currentValue)) {
         currentValue = [currentValue];
